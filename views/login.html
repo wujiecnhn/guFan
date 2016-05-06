@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+</head>
+<body>
+<form>
+    用户名：<input type="text" id="name" /><br/>
+    密  码：<input type="password" id="password"/><br/>
+    <input type="button" name="sub" value="提交" onclick="subClick()"/><br/>
+</form>
+</body>
+
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+    });
+
+    // 表单提交
+    function subClick() {
+        var name = $("#name").val();
+        var password = $("#password").val();
+        $.ajax({
+            url: '/index',
+            type: 'POST',
+            dataType: 'json',
+            data: {"name":name,"password":password},
+            success: function(data){
+                alert(data.status);
+                alert(data.info);
+                alert(data.obj.name);
+                /*console.log('success!')
+                 console.log(data.toString());*/
+            },
+            error: function(xmlHTTPRequest, status, error){
+                console.log(status);
+                alert('cuowu!');
+            }
+        })
+    }
+
+</script>
+
+</html>
